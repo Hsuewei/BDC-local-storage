@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: local-storage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: local-volume-provisioner
+  namespace: local-storage
+  labels:
+    app: local-volume-provisioner
+spec:
+  type: ClusterIP
+  selector:
+    app: local-volume-provisioner
+  ports:
+  - name: metrics
+    port: 8080
+    protocol: TCP
