@@ -6,7 +6,7 @@ PV_COUNT=25
 for i in $(seq 1 $PV_COUNT); do
   vol="vol$i"
 
-if  [ /dev/mapper/db_nvme-vol -a /dev/mapper/db_ssd-vol -a /dev/mapper/db_hdd-vol]; then
+if  [ /dev/mapper/db_nvme-vol -a /dev/mapper/db_ssd-vol -a /dev/mapper/db_hdd-vol ]; then
     mkdir -p /mnt/nvme/$vol
     mount --bind /mnt/nvme/$vol /mnt/nvme/$vol
     mkdir -p /mnt/ssd/$vol
@@ -14,13 +14,13 @@ if  [ /dev/mapper/db_nvme-vol -a /dev/mapper/db_ssd-vol -a /dev/mapper/db_hdd-vo
     mkdir -p /mnt/hdd/$vol
     mount --bind /mnt/hdd/$vol /mnt/hdd/$vol
 
-elif  [ /dev/mapper/db_pmem-vol -a /dev/mapper/db_ssd-vol]; then
+elif  [ /dev/mapper/db_pmem-vol -a /dev/mapper/db_ssd-vol ]; then
     mkdir -p /mnt/pmem/$vol
     mount --bind /mnt/pmem/$vol /mnt/pmem/$vol
     mkdir -p /mnt/ssd/$vol
     mount --bind /mnt/ssd/$vol /mnt/ssd/$vol
 
-else 
+elif [ ! /dev/mapper/db_nvme-vol -o ! /dev/mapper/db_ssd-vol -o ! /dev/mapper/db_hdd-vol -o ! /dev/mapper/db_pmem-vol ]; then
     mkdir -p /mnt/local-storage
     mount --bind /mnt/local-storage/$vol /mnt/local-storage/$vol
 fi
