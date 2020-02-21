@@ -21,7 +21,7 @@ elif  [ /dev/mapper/db_pmem-vol -a /dev/mapper/db_ssd-vol ]; then
     mount --bind /mnt/ssd/$vol /mnt/ssd/$vol
 
 elif [ ! /dev/mapper/db_nvme-vol -o ! /dev/mapper/db_ssd-vol -o ! /dev/mapper/db_hdd-vol -o ! /dev/mapper/db_pmem-vol ]; then
-    mkdir -p /mnt/local-storage
+    mkdir -p /mnt/local-storage/$vol
     mount --bind /mnt/local-storage/$vol /mnt/local-storage/$vol
 fi
 
