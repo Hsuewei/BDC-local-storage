@@ -3,7 +3,7 @@
 # num of persistent volumes
 PV_COUNT=25
 
-for i in $(seq 1 $PV_COUNT); do
+for i in $(seq 1 $PV_COUNT) do
   vol="vol$i"
 
 if  [ /dev/mapper/db_nvme-vol -a /dev/mapper/db_ssd-vol -a /dev/mapper/db_hdd-vol ]; then
