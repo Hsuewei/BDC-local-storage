@@ -1,10 +1,10 @@
 #!/bin/bash -e
 
-# num of persistent volumes
+#Num of persistent volumes
 PV_COUNT=25
 
-for i in $(seq 1 $PV_COUNT) do
-  vol="vol$i"
+for i in $(seq 1 $PV_COUNT); do
+vol=vol$i
 
 if  [ /dev/mapper/db_nvme-vol -a /dev/mapper/db_ssd-vol -a /dev/mapper/db_hdd-vol ]; then
     mkdir -p /mnt/nvme/$vol
@@ -26,3 +26,4 @@ elif [ ! /dev/mapper/db_nvme-vol -o ! /dev/mapper/db_ssd-vol -o ! /dev/mapper/db
 fi
 
 done
+
